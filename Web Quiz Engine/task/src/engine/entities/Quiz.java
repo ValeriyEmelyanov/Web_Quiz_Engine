@@ -1,6 +1,9 @@
 package engine.entities;
 
 public class Quiz {
+    private static int counter = 0;
+
+    private int id;
     private String title;
     private String text;
     private String[] options;
@@ -10,10 +13,19 @@ public class Quiz {
     }
 
     public Quiz(String title, String text, String[] options, int answer) {
+        this.id = ++counter;
         this.title = title;
         this.text = text;
         this.options = options.clone();
         this.answer = answer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

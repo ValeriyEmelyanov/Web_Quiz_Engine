@@ -4,8 +4,8 @@ public class ResultDto {
     private static final ResultDto SUCCESS = new ResultDto(true, "Congratulations, you're right!");
     private static final ResultDto FAILURE = new ResultDto(false, "Wrong answer! Please, try again.");
 
-    private boolean success;
-    private String feedback;
+    private final boolean success;
+    private final String feedback;
 
     private ResultDto(boolean success, String feedback) {
         this.success = success;

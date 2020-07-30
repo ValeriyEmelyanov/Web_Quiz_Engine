@@ -234,6 +234,34 @@ files:
         }
     }
   learner_created: false
+- name: src/engine/dtos/ResultDto.java
+  visible: true
+  learner_created: true
+- name: src/engine/entities/Quiz.java
+  visible: true
+  learner_created: true
+- name: src/engine/controllers/QuizController.java
+  visible: true
+  learner_created: true
+- name: src/engine/dtos/QuizDto.java
+  visible: true
+  learner_created: true
+- name: src/engine/exceptions/NotFoundQuizException.java
+  visible: true
+  learner_created: true
+- name: src/engine/exceptions/AppExceptionHandler.java
+  visible: true
+  learner_created: true
+- name: src/engine/services/QuizService.java
+  visible: true
+  learner_created: true
+- name: src/engine/dao/QuizDao.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/505/implement
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/91/stages/505/implement">JetBrains
+    Academy</a>
+  time: Thu, 30 Jul 2020 07:39:33 UTC
 record: -1
