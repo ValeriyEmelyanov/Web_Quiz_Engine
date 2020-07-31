@@ -1,49 +1,50 @@
 package engine.services;
 
+import engine.dao.QuizDao;
 import engine.dtos.QuizDto;
 import engine.dtos.ResultDto;
 import engine.entities.Quiz;
 import engine.exceptions.NotFoundQuizException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class QuizService {
-    private final Map<Integer, Quiz> quizzes = new HashMap<>();
+    private final QuizDao quizDao;
 
-    public QuizService() {
+    @Autowired
+    public QuizService(QuizDao quizDao) {
+        this.quizDao = quizDao;
     }
 
     public QuizDto create(Quiz reqQuiz) {
-        Quiz quiz = new Quiz(reqQuiz.getTitle(), reqQuiz.getText(), reqQuiz.getOptions(), reqQuiz.getAnswer());
-        quizzes.put(quiz.getId(), quiz);
+        Quiz quiz = quizDao.save(reqQuiz);
         return new QuizDto(quiz);
     }
 
     public QuizDto getById(int id) {
-        Quiz quiz = quizzes.get(id);
-        if (quiz != null) {
-            return new QuizDto(quiz);
+        Optional<Quiz> optionalQuiz = quizDao.getById(id);
+        if (optionalQuiz.isEmpty()) {
+            throw new NotFoundQuizException("Not found");
         }
-        throw new NotFoundQuizException("Not found");
+        return new QuizDto(optionalQuiz.get());
     }
 
     public List<QuizDto> getAll() {
-        return quizzes.values().stream()
+        return quizDao.getAll().stream()
                 .map(QuizDto::new)
                 .collect(Collectors.toList());
     }
 
     public ResultDto checkAnswerById(int id, int answer) {
-        Quiz quiz = quizzes.get(id);
-        if (quiz == null) {
+        Optional<Quiz> optionalQuiz = quizDao.getById(id);
+        if (optionalQuiz.isEmpty()) {
             throw new NotFoundQuizException("Not found");
         }
-        return answer == quiz.getAnswer() ? ResultDto.getSuccess() : ResultDto.getFailure();
+        return answer == optionalQuiz.get().getAnswer() ? ResultDto.getSuccess() : ResultDto.getFailure();
     }
 }
