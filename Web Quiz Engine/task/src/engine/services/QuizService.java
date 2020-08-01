@@ -8,8 +8,12 @@ import engine.exceptions.NotFoundQuizException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,11 +44,15 @@ public class QuizService {
                 .collect(Collectors.toList());
     }
 
-    public ResultDto checkAnswerById(int id, int answer) {
+    public ResultDto checkAnswerById(int id, int[] answer) {
         Optional<Quiz> optionalQuiz = quizDao.getById(id);
         if (optionalQuiz.isEmpty()) {
             throw new NotFoundQuizException("Not found");
         }
-        return answer == optionalQuiz.get().getAnswer() ? ResultDto.getSuccess() : ResultDto.getFailure();
+
+        Set<Integer> modelSet = Arrays.stream(optionalQuiz.get().getAnswer()).boxed().collect(Collectors.toSet());
+        Set<Integer> answerSet = Arrays.stream(answer).boxed().collect(Collectors.toSet());
+
+        return modelSet.equals(answerSet) ? ResultDto.getSuccess() : ResultDto.getFailure();
     }
 }

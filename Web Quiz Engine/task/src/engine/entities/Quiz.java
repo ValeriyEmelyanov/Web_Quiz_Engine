@@ -1,23 +1,39 @@
 package engine.entities;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Quiz {
     private static int counter = 0;
 
     private int id;
+
+    @NotBlank(message = "The \"title\" field is requied")
     private String title;
+
+    @NotBlank(message = "The \"title\" field is requied")
     private String text;
+
+    @NotNull
+    @Size(min = 2)
     private String[] options;
-    private int answer;
+
+    private int[] answer;
 
     public Quiz() {
     }
 
-    public Quiz(String title, String text, String[] options, int answer) {
+    public Quiz(String title, String text, String[] options, int[] answer) {
         this.id = ++counter;
         this.title = title;
         this.text = text;
         this.options = options.clone();
-        this.answer = answer;
+        if (answer == null) {
+            this.answer = new int[0];
+        } else {
+            this.answer = answer.clone();
+        }
     }
 
     public int getId() {
@@ -52,11 +68,11 @@ public class Quiz {
         this.options = options.clone();
     }
 
-    public int getAnswer() {
+    public int[] getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int answer) {
-        this.answer = answer;
+    public void setAnswer(int[] answer) {
+        this.answer = answer.clone();
     }
 }

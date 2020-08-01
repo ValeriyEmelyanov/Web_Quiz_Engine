@@ -258,10 +258,13 @@ files:
 - name: src/engine/dao/QuizDao.java
   visible: true
   learner_created: true
+- name: src/engine/dao/QuizDaoMapImpl.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/505/implement
 status: Solved
 feedback:
   message: Congratulations! Continue on <a href="https://hyperskill.org/projects/91/stages/505/implement">JetBrains
     Academy</a>
   time: Thu, 30 Jul 2020 07:39:33 UTC
-record: -1
+record: 2

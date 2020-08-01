@@ -26,7 +26,7 @@ public class QuizDaoMapImpl implements QuizDao {
     @Override
     public Quiz save(Quiz quiz) {
         Quiz newQuiz = new Quiz(quiz.getTitle(), quiz.getText(), quiz.getOptions(), quiz.getAnswer());
-        quizzes.put(newQuiz.getId(), quiz);
+        quizzes.put(newQuiz.getId(), newQuiz);
         return newQuiz;
     }
 }

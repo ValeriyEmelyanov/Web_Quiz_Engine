@@ -1,5 +1,6 @@
 package engine.controllers;
 
+import engine.dtos.AnswerDto;
 import engine.dtos.QuizDto;
 import engine.dtos.ResultDto;
 import engine.entities.Quiz;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +29,8 @@ public class QuizController {
     }
 
     @PostMapping("/api/quizzes")
-    public QuizDto create(@RequestBody Quiz reqQuiz) {
-        return service.create(reqQuiz);
+    public QuizDto create(@Valid @RequestBody Quiz quiz) {
+        return service.create(quiz);
     }
 
     @GetMapping("/api/quizzes/{id}")
@@ -42,7 +44,7 @@ public class QuizController {
     }
 
     @PostMapping("/api/quizzes/{id}/solve")
-    public ResultDto checkAnswer(@PathVariable(name = "id") int id, @RequestParam int answer) {
-        return service.checkAnswerById(id, answer);
+    public ResultDto checkAnswer(@PathVariable(name = "id") int id, @RequestBody AnswerDto answer) {
+        return service.checkAnswerById(id, answer.getAnswer());
     }
 }
