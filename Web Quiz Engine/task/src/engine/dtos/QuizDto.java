@@ -1,6 +1,7 @@
 package engine.dtos;
 
 import engine.entities.Quiz;
+import engine.entities.QuizOption;
 
 public class QuizDto {
     private int id;
@@ -15,7 +16,7 @@ public class QuizDto {
         this.id = quiz.getId();
         this.title = quiz.getTitle();
         this.text = quiz.getText();
-        this.options = quiz.getOptions();
+        this.options = quiz.getOptions().stream().map(QuizOption::getName).toArray(String[]::new);
     }
 
     public int getId() {

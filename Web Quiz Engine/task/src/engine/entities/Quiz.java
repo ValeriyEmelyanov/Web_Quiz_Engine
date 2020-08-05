@@ -1,12 +1,27 @@
 package engine.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "quizzes")
 public class Quiz {
-    private static int counter = 0;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotBlank(message = "The \"title\" field is requied")
@@ -17,22 +32,25 @@ public class Quiz {
 
     @NotNull
     @Size(min = 2)
-    private String[] options;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private List<QuizOption> options;
 
-    private int[] answer;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private List<QuizAnswer> answer;
 
     public Quiz() {
     }
 
     public Quiz(String title, String text, String[] options, int[] answer) {
-        this.id = ++counter;
         this.title = title;
         this.text = text;
-        this.options = options.clone();
+        this.options = Arrays.stream(options).map(QuizOption::new).collect(Collectors.toList());
         if (answer == null) {
-            this.answer = new int[0];
+            this.answer = Collections.emptyList();
         } else {
-            this.answer = answer.clone();
+            this.answer = Arrays.stream(answer).mapToObj(QuizAnswer::new).collect(Collectors.toList());
         }
     }
 
@@ -60,19 +78,19 @@ public class Quiz {
         this.text = text;
     }
 
-    public String[] getOptions() {
-        return options.clone();
+    public List<QuizOption> getOptions() {
+        return options;
     }
 
-    public void setOptions(String[] options) {
-        this.options = options.clone();
+    public void setOptions(List<QuizOption> options) {
+        this.options = options;
     }
 
-    public int[] getAnswer() {
+    public List<QuizAnswer> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int[] answer) {
-        this.answer = answer.clone();
+    public void setAnswer(List<QuizAnswer> answer) {
+        this.answer = answer;
     }
 }
