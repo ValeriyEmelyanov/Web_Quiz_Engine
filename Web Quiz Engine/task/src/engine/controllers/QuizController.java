@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -28,8 +29,8 @@ public class QuizController {
     }
 
     @PostMapping("/api/quizzes")
-    public QuizDto create(@Valid @RequestBody Quiz quiz) {
-        return service.create(quiz);
+    public QuizDto create(@Valid @RequestBody Quiz quiz, Principal principal) {
+        return service.create(quiz, principal);
     }
 
     @GetMapping("/api/quizzes/{id}")
@@ -49,7 +50,7 @@ public class QuizController {
 
     @DeleteMapping("/api/quizzes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable(name = "id") int id) {
-        service.delete(id);
+    public void delete(@PathVariable(name = "id") int id, Principal principal) {
+        service.delete(id, principal);
     }
 }

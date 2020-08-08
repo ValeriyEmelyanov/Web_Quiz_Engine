@@ -4,7 +4,6 @@ import engine.dtos.QuizDto;
 import engine.dtos.ResultDto;
 import engine.entities.Quiz;
 import engine.entities.QuizAnswer;
-import engine.entities.User;
 import engine.exceptions.NoUserException;
 import engine.exceptions.NotFoundQuizException;
 import engine.exceptions.NotMatchesUserException;
@@ -12,6 +11,7 @@ import engine.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -21,20 +21,14 @@ import java.util.stream.Collectors;
 @Service
 public class QuizService {
     private final QuizRepository repository;
-    private final UserService userService;
 
     @Autowired
-    public QuizService(QuizRepository repository, UserService userService) {
+    public QuizService(QuizRepository repository) {
         this.repository = repository;
-        this.userService = userService;
     }
 
-    public QuizDto create(Quiz reqQuiz) {
-        Optional<User> currentUserOptional = userService.getCurrentUser();
-        if (currentUserOptional.isEmpty()) {
-            throw new NoUserException("No authorized user");
-        }
-        reqQuiz.setAuthor(currentUserOptional.get().getEmail());
+    public QuizDto create(Quiz reqQuiz, Principal principal) {
+        reqQuiz.setAuthor(principal.getName());
         Quiz quiz = repository.save(reqQuiz);
         return new QuizDto(quiz);
     }
@@ -69,17 +63,13 @@ public class QuizService {
         return modelSet.equals(answerSet) ? ResultDto.getSuccess() : ResultDto.getFailure();
     }
 
-    public void delete(int id) {
+    public void delete(int id, Principal principal) {
         Optional<Quiz> byId = repository.findById(id);
         if (byId.isEmpty()) {
             throw new NotFoundQuizException("Not found");
         }
 
-        Optional<User> currentUserOptional = userService.getCurrentUser();
-        if (currentUserOptional.isEmpty()) {
-            throw new NoUserException("No authorized user");
-        }
-        String email = currentUserOptional.get().getEmail();
+        String email = principal.getName();
         if (email == null) {
             throw new NoUserException("No authorized user");
         }

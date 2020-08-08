@@ -5,9 +5,6 @@ import engine.entities.User;
 import engine.exceptions.UserWithEmailAlreadyExists;
 import engine.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,19 +38,4 @@ public class UserService {
         return repository.findByEmail(email);
     }
 
-    private Optional<String> getCurrentUserName() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth instanceof AnonymousAuthenticationToken) {
-            return Optional.empty();
-        }
-        return Optional.of(auth.getName());
-    }
-
-    public Optional<User> getCurrentUser() {
-        Optional<String> optionalEmail = getCurrentUserName();
-        if (optionalEmail.isEmpty()) {
-            return Optional.empty();
-        }
-        return repository.findByEmail(optionalEmail.get());
-    }
 }
