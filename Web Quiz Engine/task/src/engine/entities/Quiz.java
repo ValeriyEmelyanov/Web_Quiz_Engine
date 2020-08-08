@@ -40,6 +40,8 @@ public class Quiz {
     @JoinColumn(name = "quiz_id", nullable = false)
     private List<QuizAnswer> answer;
 
+    private String author;
+
     public Quiz() {
     }
 
@@ -92,5 +94,13 @@ public class Quiz {
 
     public void setAnswer(List<QuizAnswer> answer) {
         this.answer = answer;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -12,14 +12,22 @@ import org.springframework.web.context.request.WebRequest;
 public class AppExceptionHandler {
 
     @ExceptionHandler(NotFoundQuizException.class)
-    public ResponseEntity<Object> handleNotFoundQuizException(NotFoundQuizException ex, WebRequest request) {
+    public ResponseEntity<Object> handleNotFoundQuizException(RuntimeException ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException ex,WebRequest request) {
+    @ExceptionHandler({MethodArgumentNotValidException.class, UserWithEmailAlreadyExists.class})
+    public ResponseEntity<Object> handleMethodArgumentNotValidException(RuntimeException ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NoUserException.class)
+    public ResponseEntity<Object> handleNoUserException(RuntimeException ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(NotMatchesUserException.class)
+    public ResponseEntity<Object> handleNotMatchesUserException(RuntimeException ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
 }

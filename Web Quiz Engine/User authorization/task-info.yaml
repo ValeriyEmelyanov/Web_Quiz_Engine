@@ -651,6 +651,55 @@ files:
         }
     }
   learner_created: false
+- name: src/engine/entities/QuizOption.java
+  visible: true
+  learner_created: true
+- name: src/engine/entities/QuizAnswer.java
+  visible: true
+  learner_created: true
+- name: src/engine/repositories/QuizRepository.java
+  visible: true
+  learner_created: true
+- name: src/engine/entities/User.java
+  visible: true
+  learner_created: true
+- name: src/engine/dtos/UserDto.java
+  visible: true
+  learner_created: true
+- name: src/engine/repositories/UserRepository.java
+  visible: true
+  learner_created: true
+- name: src/engine/services/UserService.java
+  visible: true
+  learner_created: true
+- name: src/engine/controllers/RegisterController.java
+  visible: true
+  learner_created: true
+- name: src/engine/security/BCryptEncoderConfig.java
+  visible: true
+  learner_created: true
+- name: src/engine/exceptions/UserWithEmailAlreadyExists.java
+  visible: true
+  learner_created: true
+- name: src/engine/security/UserDetailsImpl.java
+  visible: true
+  learner_created: true
+- name: src/engine/security/UserDetailsServiceImpl.java
+  visible: true
+  learner_created: true
+- name: src/engine/security/SecurityConfig.java
+  visible: true
+  learner_created: true
+- name: src/engine/exceptions/NoUserException.java
+  visible: true
+  learner_created: true
+- name: src/engine/exceptions/NotMatchesUserException.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/508/implement
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/91/stages/508/implement">JetBrains
+    Academy</a>
+  time: Sat, 08 Aug 2020 13:07:10 UTC
 record: -1
