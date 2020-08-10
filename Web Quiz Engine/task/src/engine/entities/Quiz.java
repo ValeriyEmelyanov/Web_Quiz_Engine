@@ -2,6 +2,7 @@ package engine.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +42,9 @@ public class Quiz {
     private List<QuizAnswer> answer;
 
     private String author;
+
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<QuizCompletion> quizCompletions;
 
     public Quiz() {
     }
@@ -102,5 +106,13 @@ public class Quiz {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public List<QuizCompletion> getQuizCompletions() {
+        return quizCompletions;
+    }
+
+    public void setQuizCompletions(List<QuizCompletion> quizCompletions) {
+        this.quizCompletions = quizCompletions;
     }
 }

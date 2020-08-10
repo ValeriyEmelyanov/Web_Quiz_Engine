@@ -1,12 +1,14 @@
 package engine.entities;
 
-import engine.dtos.UserDto;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +22,9 @@ public class User {
     private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    List<QuizCompletion> quizCompletions;
 
     public User() {
     }
@@ -59,5 +64,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public List<QuizCompletion> getQuizCompletions() {
+        return quizCompletions;
+    }
+
+    public void setQuizCompletions(List<QuizCompletion> quizCompletions) {
+        this.quizCompletions = quizCompletions;
     }
 }

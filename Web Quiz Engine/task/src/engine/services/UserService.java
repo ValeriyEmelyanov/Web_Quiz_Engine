@@ -7,10 +7,12 @@ import engine.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class UserService {
     private final UserRepository repository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -21,6 +23,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public void register(UserDto userDto) {
         Optional<User> checkByEmail = repository.findByEmail(userDto.getEmail());
         if (checkByEmail.isPresent()) {
