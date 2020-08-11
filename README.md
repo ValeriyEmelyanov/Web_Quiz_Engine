@@ -1,6 +1,7 @@
 ## Web Quiz Engine
 
-This is a training project: REST API service,
+This is a training project from JetBrains Academy. (Challenging level)
+In this project: REST API service,
 multi-users web service for creating and solving quizzes,
 the service has the ability to answer questions (or quizzes)
 and then see some results.
@@ -9,7 +10,7 @@ and then see some results.
 
 * Java 11
 * SpringBoot
-* Spring JPA
+* Spring Data JPA
 * Spring Security
 * H2 Embedded Database
 * Gradle
