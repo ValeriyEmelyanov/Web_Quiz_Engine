@@ -1,7 +1,7 @@
 ## Web Quiz Engine
 
-This is a training project from JetBrains Academy. (Challenging level)
-In this project: REST API service,
+This is a training project from JetBrains Academy (Challenging level).<br>
+In this project: REST API,
 multi-users web service for creating and solving quizzes,
 the service has the ability to answer questions (or quizzes)
 and then see some results.
@@ -19,47 +19,47 @@ and then see some results.
 
 ### API Description
 
-<b>Register a user</b>
-HTTP  Method: POST
-Path: /api/register
-Status: 201 (Created)
-Description: A new user is being registered.
+<b>Register a user</b><br>
+HTTP  Method: POST<br>
+Path: /api/register<br>
+Status: 201 (Created)<br>
+Description: A new user is being registered.<br>
 
-<b>Get all quizzes</b>
-HTTP  Method: GET
-Path: /api/quizzes
-Status: 200 (OK)
-Description: All quizzes are fetched.
+<b>Get all quizzes</b><br>
+HTTP  Method: GET<br>
+Path: /api/quizzes<br>
+Status: 200 (OK)<br>
+Description: All quizzes are fetched.<br>
 
-<b>Get a quiz</b>
-HTTP  Method: GET
-Path: /api/quizzes/{id}
-Status: 200 (OK)
-Description: One quiz is fetched.
+<b>Get a quiz</b><br>
+HTTP  Method: GET<br>
+Path: /api/quizzes/{id}<br>
+Status: 200 (OK)<br>
+Description: One quiz is fetched.<br>
 
-<b>Post a quiz</b>
-HTTP  Method: POST
-Path: /api/quizzes
-Status: 201 (Created)
-Description: A new quiz is created.
+<b>Post a quiz</b><br>
+HTTP  Method: POST<br>
+Path: /api/quizzes<br>
+Status: 201 (Created)<br>
+Description: A new quiz is created.<br>
 
-<b>Delete a aquiz</b>
-HTTP  Method: DELETE
-Path: /api/quizzes/{id}
-Status: 204 (No content)
-Description: The quiz is deleted.
+<b>Delete a aquiz</b><br>
+HTTP  Method: DELETE<br>
+Path: /api/quizzes/{id}<br>
+Status: 204 (No content)<br>
+Description: The quiz is deleted.<br>
 
-<b>Solvea a quiz</b>
-HTTP  Method: POST
-Path: /api/quizzes/{id}/solve
-Status: 200 (OK)
-Description: The quiz is completed.
+<b>Solvea a quiz</b><br>
+HTTP  Method: POST<br>
+Path: /api/quizzes/{id}/solve<br>
+Status: 200 (OK)<br>
+Description: The quiz is completed.<br>
 
-<b>Get all completed quizzes</b>
-HTTP  Method: GET
-Path: /api/quizzes/completed
-Status: 200 (OK)
-Description: All completions of quizzes for a specified user are fetched.
+<b>Get all completed quizzes</b><br>
+HTTP  Method: GET<br>
+Path: /api/quizzes/completed<br>
+Status: 200 (OK)<br>
+Description: All completions of quizzes for a specified user are fetched.<br>
 
 #### Usefull links
 * <a href="https://reqres.in/">Free API server Reqres to make our example requests</a>
