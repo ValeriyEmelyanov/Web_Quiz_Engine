@@ -31,6 +31,7 @@ public class QuizController {
     }
 
     @PostMapping("/api/quizzes")
+    @ResponseStatus(HttpStatus.CREATED)
     public QuizDto create(@Valid @RequestBody Quiz quiz, Principal principal) {
         return service.create(quiz, principal);
     }

@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "b281b2cc-6559-42cb-922f-8ea7ff0a8211",
+		"name": "Web-quiz-engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Solve quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"answer\": [2]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes/434/solve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes",
+						"434",
+						"solve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Сreate quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"The Java Logo\",\r\n    \"text\": \"What is depicted on the Java logo?\",\r\n    \"options\": [\"Robot\",\"Tea leaf\",\"Cup of coffee\",\"Bug\"],\r\n    \"answer\": [2]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes/434",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes",
+						"434"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create quiz 2",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"The Ultimate Question\",\r\n    \"text\": \"What is the answer to the Ultimate Question of Life, the Universe and Everything?\",\r\n    \"options\": [\"Everything goes right\",\"42\",\"2+2=4\",\"11011100\"],\r\n    \"answer\": [0]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll quizzes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create quiz 3",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Coffee drinks\",\r\n    \"text\": \"Select only coffee drinks.\",\r\n    \"options\": [\"Americano\",\"Tea\",\"Cappuccino\",\"Sprite\"],\r\n    \"answer\": [0,2]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"secret\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8889/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete quiz",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes/434",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes",
+						"434"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8889/actuator/shutdown",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8889/actuator/shutdown",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"actuator",
+						"shutdown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get completed",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic dGVzdEBnbWFpbC5jb206c2VjcmV0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8889/api/quizzes/completed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"quizzes",
+						"completed"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
